@@ -63,7 +63,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <h1>User Profile</h1>
+      <h1>User Profile Story</h1>
       <div className="stories">
         {stories.length > 0 && (
           <Story
