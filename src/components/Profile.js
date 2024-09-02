@@ -17,14 +17,14 @@ const Profile = () => {
   ]);
 
   const [currentStoryIndex, setCurrentStoryIndex] = useState(null);
-  const [caption, setCaption] = useState(""); // New state for the caption
+  const [caption, setCaption] = useState("");
 
-  // Automatically remove stories older than 2 minutes
+  // Automatically remove stories older than 24 hours
   useEffect(() => {
     const intervalId = setInterval(() => {
       const now = new Date();
       const filteredStories = stories.filter(
-        (story) => now - new Date(story.timestamp) < 2 * 60 * 1000 // 2 minutes
+        (story) => now - new Date(story.timestamp) < 24 * 60 * 60 * 1000 // 24 hours in milliseconds
       );
       setStories(filteredStories);
     }, 60000); // Check every minute
@@ -52,7 +52,7 @@ const Profile = () => {
           type: fileType,
           viewed: false,
           timestamp: new Date(),
-          caption: caption, // Add the caption to the story object
+          caption: caption,
         };
         setStories([newStory, ...stories]);
         setCaption(""); // Clear the caption input after upload
